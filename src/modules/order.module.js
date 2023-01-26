@@ -3,7 +3,7 @@ import axios from "axios";
 const OrderModule = {
   oderProduct: async (order) => {
     try {
-      let orderproduct = await axios.post("http://localhost:5000/api/order", order);
+      let orderproduct = await axios.post("https://nodejs-server-demo.herokuapp.com/api/order", order);
       if (orderproduct) {
         return {
           success: true,

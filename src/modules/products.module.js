@@ -4,7 +4,7 @@ const ProductModule = {
   getAllProduct: async (product) => {
     try {
       let allProduct = await axios.get(
-        "http://localhost:5000/api/getallproducts",
+        "https://nodejs-server-demo.herokuapp.com/api/getallproducts",
         product
       );
       if (allProduct) {

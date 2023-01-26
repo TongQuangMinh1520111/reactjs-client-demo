@@ -6,7 +6,7 @@ import Cookies from "universal-cookie";
 const AccountModule = {
   login: async (user) => {
     try {
-      let login = await axios.post("http://localhost:5000/api/login", user);
+      let login = await axios.post("https://nodejs-server-demo.herokuapp.com/api/login", user);
       if (login) {
         // check success hay ko
         // return login.data.user
@@ -41,7 +41,7 @@ const AccountModule = {
   register: async (user) => {
     try {
       let register = await axios.post(
-        "http://localhost:5000/api/register",
+        "https://nodejs-server-demo.herokuapp.com/api/register",
         user
       );
       if (register) {
@@ -74,7 +74,7 @@ const AccountModule = {
       const cookies = new Cookies();
       const token = cookies.get("TOKEN");
       if (token) {
-        let profile = await axios.get("http://localhost:5000/api/profile", {
+        let profile = await axios.get("https://nodejs-server-demo.herokuapp.com/api/profile", {
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
