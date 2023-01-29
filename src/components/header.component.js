@@ -3,13 +3,13 @@ import { Link } from "react-router-dom";
 // import { Auth } from "../context/Auth";
 import { Store } from "../context/Store";
 
-const Header = () => {
+const Header = (props) => {
   // const { dispatch } = useContext(Auth);
   const { state } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   const handleClickRender = () => {
-    console.log("link")
+    console.log("link");
     // dispatch({
     //   type: "CHECK_RENDER_FALSE",
     // });
@@ -18,6 +18,24 @@ const Header = () => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0));
   }, [cart.cartItems]);
 
+  const isLogIn = props.isLogIn;
+  console.log("isLogin", isLogIn);
+  const logInLink = isLogIn ? (
+    <></>
+  ) : (
+    <>
+      <li className="item">
+        <Link to={"/register"} onClick={handleClickRender}>
+          Register
+        </Link>
+      </li>
+      <li className="item">
+        <Link to={"/login"} onClick={handleClickRender}>
+          Login
+        </Link>
+      </li>
+    </>
+  );
   return (
     <header id="header">
       <div className="inner">
@@ -30,12 +48,12 @@ const Header = () => {
           <div id="gnavi">
             <ul className="menu">
               <li className="item">
-                <Link to={"/"}  onClick={handleClickRender}>
+                <Link to={"/"} onClick={handleClickRender}>
                   Home
                 </Link>
               </li>
               <li className="item">
-                <Link to={"/products"}  onClick={handleClickRender}>
+                <Link to={"/products"} onClick={handleClickRender}>
                   Products
                 </Link>
               </li>
@@ -44,7 +62,9 @@ const Header = () => {
                   <span>Search</span>
                 </Link>
               </li>
-              <li className="item">
+              {logInLink}
+
+              {/* <li className="item">
                 <Link to={"/register"} onClick={handleClickRender}>
                   Register
                 </Link>
@@ -53,7 +73,7 @@ const Header = () => {
                 <Link to={"/login"} onClick={handleClickRender}>
                   Login
                 </Link>
-              </li>
+              </li> */}
               <li className="item">
                 <Link to="/profile">
                   <span>Profile</span>

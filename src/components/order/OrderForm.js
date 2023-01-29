@@ -15,7 +15,7 @@ const OrderForm = () => {
     console.log(inputField);
     let order = await OrderModule.oderProduct(inputField);
     if (order.success) {
-      window.location.href = "/home";
+      window.location.href = "/";
     } else {
       alert(order.errMsg);
     }

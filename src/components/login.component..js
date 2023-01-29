@@ -17,7 +17,7 @@ const Login = () => {
     e.preventDefault();
     let userLogin = await AccountModule.login(inputField);
     if (userLogin.success) {
-      window.location.href = "/home";
+      window.location.href = "/";
     } else {
       alert(userLogin.errMsg);
     }

@@ -1,4 +1,3 @@
-
 import { Route, Routes } from "react-router-dom";
 import Register from "./components/register.component";
 import Login from "./components/login.component.";
@@ -12,19 +11,22 @@ import Profile from "./components/profile/Profile";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import OrderForm from "./components/order/OrderForm";
 import Search from "./pages/search";
+import Cookies from "universal-cookie";
 
 const App = () => {
-
+  const cookies = new Cookies();
+  const isLogIn = cookies.get("TOKEN");
+  console.log("token", isLogIn);
   return (
     <>
-      <Header />
+      <Header isLogIn={isLogIn} />
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ListProduct />}></Route>
           <Route path="/products/:slug" element={<ProductDetail />}></Route>
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={isLogIn ? <Home /> : <Login />} />
           <Route path="/search" element={<Search />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/cart" element={<CartScreen />} />
